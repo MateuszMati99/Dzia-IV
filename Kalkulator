@@ -1,0 +1,43 @@
+def perform_operation(num1, num2, operacja):
+    if operacja == "+":
+        return num1 + num2
+    elif operacja == "-":
+        return num1 - num2
+    elif operacja == "*":
+        return num1 * num2
+    elif operacja == ":":
+        if num2 == 0:
+            return "Nie można dzielic 0"
+        return num1 / num2
+    else:
+        return "Błąd w liczeniu"
+
+
+# Wyniki zapisuja sie w folderze przez króry jest otwierany kod. Mozna go znalesc poperzez szukanie
+po lewej stronie pod pythonProject
+def get_result(wynik):
+    print("Wynik: ", wynik)
+    answer = input("Chcesz zapisac wynik? (y/n): ")
+    if answer.lower() == "y":
+        with open("wynik.txt", "a") as f:
+            f.write(str(wynik) + "\n")
+
+
+while True:
+    print("1. Dodawanie +")
+    print("2. Odejmowanie -")
+    print("3. Mnożenie * ")
+    print("4. Dzielenie : ")
+    print("5. Exit")
+
+    operation = input("Wybierz znak: ")
+
+    if operation == "5":
+        break
+
+    num1 = float(input("Wpisz pierwsza cyfre: "))
+    num2 = float(input("Wpisz druga cyfre: "))
+
+    result = perform_operation(num1, num2, operation)
+    print(result)
+    get_result(result)
